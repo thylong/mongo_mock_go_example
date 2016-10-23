@@ -1,0 +1,14 @@
+[
+    {
+        "string": "Hello world 1",
+        "array": [0, 5]
+    },
+    {
+        "string": "Hello world 2",
+        "array": [0, 6]
+    },
+    {
+        "string": "N.B : Be more creative with your examples !",
+        "array": [0, 7]
+    }
+]

@@ -1,0 +1,10 @@
+version: '2'
+services:
+    mongo:
+        image: mongo:3.2
+    example:
+        build: .
+        volumes:
+            - .:/go/src/github.com/thylong/mongo_mock_go_example
+        links:
+            - mongo

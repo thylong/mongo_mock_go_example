@@ -1,9 +1,6 @@
 Mongo Mock example in Go
 ========================
 
-.. image:: https://travis-ci.org/thylong/mongo_mock_go_example.svg?branch=master
-    :target: https://travis-ci.org/thylong/mongo_mock_go_example
-
 This repository contains a simple way to mock Mgo driver.
 
 If you're interested in it, you can find an article here : http://thylong.com/golang/2016/mocking-mongo-in-golang/

@@ -4,8 +4,6 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"os"
-
-	mgo "gopkg.in/mgo.v2"
 )
 
 // MockSession satisfies Session and act as a mock of *mgo.session.
@@ -37,7 +35,7 @@ func (db MockDatabase) C(name string) Collection {
 type MockCollection struct{}
 
 // Find mock.
-func (fc MockCollection) Find(query interface{}) *mgo.Query {
+func (fc MockCollection) Find(query interface{}) Query {
 	return nil
 }
 
@@ -69,4 +67,22 @@ func (fc MockCollection) GetMyDocuments() ([]interface{}, error) {
 	json.Unmarshal(content, &documents)
 
 	return documents, nil
+}
+
+// MockQuery satisfies Query and act as a mock.
+type MockQuery struct{}
+
+// All mock.
+func (fq MockQuery) All(result interface{}) error {
+	return nil
+}
+
+// One mock.
+func (fq MockQuery) One(result interface{}) error {
+	return nil
+}
+
+// Distinct mock.
+func (fq MockQuery) Distinct(field string, result interface{}) error {
+	return nil
 }

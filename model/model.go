@@ -31,9 +31,14 @@ type MongoCollection struct {
 	*mgo.Collection
 }
 
+// MongoQuery wraps a mgo.Query to embed methods in models.
+type MongoQuery struct {
+	*mgo.Query
+}
+
 // Collection is an interface to access to the collection struct.
 type Collection interface {
-	Find(query interface{}) *mgo.Query
+	Find(query interface{}) Query
 	Count() (n int, err error)
 	Insert(docs ...interface{}) error
 	Remove(selector interface{}) error
@@ -59,4 +64,16 @@ func (c *MongoCollection) GetMyDocuments() ([]interface{}, error) {
 		return nil, err
 	}
 	return documents, nil
+}
+
+// Find shadows *mgo.Collection to returns a Query interface instead of *mgo.Query.
+func (c MongoCollection) Find(query interface{}) Query {
+	return MongoQuery{Query: c.Collection.Find(query)}
+}
+
+// Query is an interface to access to the database struct
+type Query interface {
+	All(result interface{}) error
+	One(result interface{}) (err error)
+	Distinct(key string, result interface{}) error
 }
